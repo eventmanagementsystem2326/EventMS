@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Events & Competitions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="events">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="student-dashboard.html">
+          <img src="assets/college-logo.png" alt="Trisha logo">
+          <div class="brand-copy">
+            <strong>Trisha EMS</strong>
+            <span>Student workspace</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a data-nav href="student-dashboard.html">Dashboard</a>
+          <a data-nav href="events.html">Events</a>
+          <a data-nav href="Contact-Us.html">Contact</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-panel">
+          <span class="eyebrow">Catalog</span>
+          <h1>Events and competitions made easy to browse.</h1>
+          <p>Search by theme, venue or club and switch between the event and competition views instantly.</p>
+          <div class="filter-row" style="margin-top:22px;">
+            <input id="catalogSearch" type="search" placeholder="Search by theme, venue or club" style="max-width:320px;">
+            <button class="btn-ghost filter-btn active" data-filter="All" type="button">All</button>
+            <button class="btn-ghost filter-btn" data-filter="Event" type="button">Events</button>
+            <button class="btn-ghost filter-btn" data-filter="Competition" type="button">Competitions</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container">
+        <div class="card-grid" id="catalogCards"></div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

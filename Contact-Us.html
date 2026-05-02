@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Contact Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="contact">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="student-dashboard.html">
+          <img src="assets/college-logo.png" alt="Trisha logo">
+          <div class="brand-copy"><strong>Trisha EMS</strong><span>Support and coordination</span></div>
+        </a>
+        <nav class="nav-links">
+          <a data-nav href="student-dashboard.html">Dashboard</a>
+          <a data-nav href="events.html">Events</a>
+          <a data-nav href="Contact-Us.html">Contact</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container stack">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">Support</span>
+            <h1 style="font-size:2.4rem;">Get in touch with the event team.</h1>
+            <p>Use these contacts for event clarifications, competition support and student participation queries.</p>
+          </div>
+        </div>
+        <div class="contact-grid" id="supportContacts" style="grid-template-columns:repeat(3,minmax(0,1fr));"></div>
+        <div class="table-panel">
+          <h3>Club Coordinators</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Club</th><th>Faculty Coordinator</th><th>Student Coordinator</th></tr>
+              </thead>
+              <tbody id="coordinatorContacts"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

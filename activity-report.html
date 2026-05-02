@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | View Registrations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="adminCatalog">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="admin-dashboard.html"><img src="assets/college-logo.png" alt="Trisha logo"><div class="brand-copy"><strong>Trisha EMS</strong><span>Activity overview</span></div></a>
+        <nav class="nav-links">
+          <a data-nav href="admin-dashboard.html">Dashboard</a>
+          <a data-nav href="manage-events.html">Events</a>
+          <a data-nav href="manage-competitions.html">Competitions</a>
+          <a data-nav href="manage-homescreen.html">Highlights</a>
+          <a data-nav href="manage-contacts.html">Contacts</a>
+          <a data-nav href="manage-options.html">Options</a>
+          <a data-nav href="activity-report.html">Activities</a>
+          <a data-nav href="participants-report.html">Reports</a>
+          <a data-nav href="summary-report.html">Summary</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container">
+        <div class="table-panel">
+          <div class="page-heading">
+            <div>
+              <h1 style="font-size:2rem;">All Events and Competitions</h1>
+              <p>See completed, ongoing and upcoming items in one searchable admin view.</p>
+            </div>
+            <button class="btn" id="downloadActivitiesPdf" type="button">Download DOC</button>
+          </div>
+          <div class="toolbar" style="margin-bottom:16px;">
+            <input id="activitySearch" type="search" placeholder="Search by name, club or venue">
+            <input id="activityDateFilter" type="date">
+            <select id="activityTypeFilter">
+              <option value="">All types</option>
+              <option value="Event">Events</option>
+              <option value="Competition">Competitions</option>
+            </select>
+            <select id="activityClubFilter">
+              <option value="">All clubs</option>
+            </select>
+            <select id="activityCategoryFilter">
+              <option value="">All categories</option>
+              <option value="Internal">Internal</option>
+              <option value="External">External</option>
+            </select>
+            <select id="activityStatusFilter">
+              <option value="">All status</option>
+              <option value="Upcoming">Upcoming</option>
+              <option value="Today">Today</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>S.No</th><th>Type</th><th>Name</th><th>Date</th><th>Club</th><th>Category</th><th>Venue</th><th>Status</th></tr></thead>
+              <tbody id="activityBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

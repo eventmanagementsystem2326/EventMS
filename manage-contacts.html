@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Manage Contacts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .contacts-layout {
+      display: grid;
+      gap: 22px;
+      padding-top: 18px;
+    }
+
+    .contacts-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+    }
+
+    .contacts-intro p {
+      margin: 8px 0 0;
+      max-width: 760px;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: minmax(340px, 430px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .contacts-form-card .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 20px;
+      margin-top: 18px;
+    }
+
+    .contacts-form-card .field {
+      align-content: start;
+    }
+
+    .contacts-form-card .field input,
+    .contacts-form-card .field select,
+    .contacts-form-card .field textarea {
+      min-height: 58px;
+    }
+
+    .contacts-form-card .field textarea {
+      min-height: 120px;
+    }
+
+    #studentCoordinatorEntries {
+      gap: 16px;
+    }
+
+    .coordinator-entry-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: end;
+      gap: 14px 16px;
+      padding: 16px 18px;
+      border: 1px solid rgba(20, 32, 51, 0.09);
+      border-radius: 20px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 247, 251, 0.95));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .coordinator-entry-row .field {
+      min-width: 0;
+      gap: 8px;
+    }
+
+    .coordinator-entry-row .field label {
+      min-height: 2.5em;
+      display: flex;
+      align-items: end;
+      line-height: 1.25;
+    }
+
+    .coordinator-entry-row .field input,
+    .coordinator-entry-row .field select {
+      min-height: 54px;
+      padding: 0 18px;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .coordinator-entry-row .field input::placeholder {
+      color: rgba(20, 32, 51, 0.56);
+    }
+
+    #studentCoordinatorEntries .empty-state {
+      padding: 18px 20px;
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .contacts-table-card .table-wrap {
+      max-height: 720px;
+      overflow: auto;
+    }
+
+    .contacts-table-card table {
+      min-width: 1560px;
+    }
+
+    .contacts-table-card thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #f8fafc;
+    }
+
+    .contacts-table-card th:nth-child(2),
+    .contacts-table-card th:nth-child(3),
+    .contacts-table-card th:nth-child(4),
+    .contacts-table-card th:nth-child(5),
+    .contacts-table-card th:nth-child(6),
+    .contacts-table-card th:nth-child(7),
+    .contacts-table-card th:nth-child(8),
+    .contacts-table-card th:nth-child(9),
+    .contacts-table-card th:nth-child(10),
+    .contacts-table-card th:nth-child(11),
+    .contacts-table-card th:nth-child(12),
+    .contacts-table-card th:nth-child(13),
+    .contacts-table-card th:nth-child(14),
+    .contacts-table-card th:nth-child(15) {
+      white-space: nowrap;
+    }
+
+    .contacts-table-card .nowrap-cell {
+      white-space: nowrap;
+    }
+
+    .contacts-table-card .nowrap-line {
+      white-space: nowrap;
+    }
+
+    .contacts-table-card .nowrap-line + .nowrap-line {
+      margin-top: 4px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(228, 93, 40, 0.12);
+      color: var(--brand-deep);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .contacts-table-title p,
+    .contacts-form-card p {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .contacts-table-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .contacts-toolbar {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .contacts-toolbar .filter-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    @media (max-width: 1180px) {
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .contacts-intro,
+      .contacts-table-title {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .contacts-toolbar .filter-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contacts-form-card .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .coordinator-entry-row {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+
+      .coordinator-entry-row .field label {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body data-page="manageContacts">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="admin-dashboard.html"><img src="assets/college-logo.png" alt="Trisha logo"><div class="brand-copy"><strong>Trisha EMS</strong><span>Contact management</span></div></a>
+        <nav class="nav-links">
+          <a data-nav href="admin-dashboard.html">Dashboard</a>
+          <a data-nav href="manage-events.html">Events</a>
+          <a data-nav href="manage-competitions.html">Competitions</a>
+          <a data-nav href="manage-homescreen.html">Highlights</a>
+          <a data-nav href="manage-contacts.html">Contacts</a>
+          <a data-nav href="manage-options.html">Options</a>
+          <a data-nav href="activity-report.html">Activities</a>
+          <a data-nav href="participants-report.html">Reports</a>
+          <a data-nav href="summary-report.html">Summary</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container contacts-layout">
+        <div class="contacts-intro">
+          <div>
+            <span class="section-label">Admin Contact Desk</span>
+            <h1 style="margin:0;font-size:2.35rem;">Manage support contacts and club coordinators.</h1>
+            <p>Add, update, and delete the contact details shown on the student contact page, including support cards and club or association coordinators.</p>
+          </div>
+        </div>
+        <div class="contacts-grid">
+          <article class="form-panel contacts-form-card">
+            <span class="section-label">Contact Form</span>
+            <h3>Create or update contact info</h3>
+            <p>Choose the contact type first, then fill only the fields needed for that section.</p>
+            <div id="contactFlash" class="flash"></div>
+            <form id="contactForm" class="form-grid">
+              <div class="field">
+                <label for="contactType">Contact type</label>
+                <select id="contactType" required>
+                  <option value="support">Support card</option>
+                  <option value="coordinator">Club / Association coordinator</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="displayOrder">Display order</label>
+                <input id="displayOrder" type="number" min="0" placeholder="0">
+              </div>
+
+              <div class="field full" id="supportTitleField">
+                <label for="supportTitle">Support title</label>
+                <input id="supportTitle" placeholder="College Office">
+              </div>
+              <div class="field full" id="supportEmailField">
+                <label for="supportEmail" id="supportEmailLabel">Email</label>
+                <input id="supportEmail" type="email" placeholder="college@trishaems.edu">
+              </div>
+              <div class="field" id="supportPhoneField">
+                <label for="supportPhone" id="supportPhoneLabel">Phone</label>
+                <input id="supportPhone" type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="9876543210">
+              </div>
+              <div class="field" id="supportTimingField">
+                <label for="supportTiming">Timing</label>
+                <input id="supportTiming" placeholder="Mon-Sat, 9:00 AM to 5:00 PM">
+              </div>
+              <div class="field full" id="supportAddressField">
+                <label for="supportAddress">Address</label>
+                <textarea id="supportAddress" placeholder="Campus address or office location"></textarea>
+              </div>
+
+              <div class="field full hidden" id="clubNameField">
+                <label for="clubName">Club / Association</label>
+                <input id="clubName" placeholder="Coding Club">
+              </div>
+              <div class="field full hidden" id="facultyCoordinatorField">
+                <label for="facultyCoordinatorName">Faculty Coordinator</label>
+                <textarea id="facultyCoordinatorName" placeholder="Enter one or more faculty coordinators, each on a new line"></textarea>
+              </div>
+              <div class="field hidden" id="facultyCoordinatorEmailField">
+                <label for="facultyCoordinatorEmail">Faculty Coordinator Email</label>
+                <input id="facultyCoordinatorEmail" type="email" placeholder="faculty@trishaems.edu">
+              </div>
+              <div class="field hidden" id="facultyCoordinatorPhoneField">
+                <label for="facultyCoordinatorPhone">Faculty Coordinator Phone</label>
+                <input id="facultyCoordinatorPhone" type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="9876543210">
+              </div>
+              <div class="field full hidden" id="studentCoordinatorCountField">
+                <label for="studentCoordinatorCount">Number of Student Coordinators</label>
+                <input id="studentCoordinatorCount" type="number" min="0" max="10" placeholder="Enter count">
+              </div>
+              <div class="field full hidden" id="studentCoordinatorEntriesField">
+                <label>Student Coordinator Details</label>
+                <div id="studentCoordinatorEntries" class="stack"></div>
+              </div>
+
+              <div class="field full">
+                <div class="button-row">
+                  <button class="btn" type="submit" id="contactSubmitLabel">Save contact</button>
+                  <button class="btn-ghost hidden" type="button" id="cancelContactEdit">Cancel edit</button>
+                </div>
+              </div>
+            </form>
+          </article>
+
+          <article class="table-panel contacts-table-card">
+            <div class="contacts-table-title">
+              <div>
+                <span class="section-label">Published List</span>
+                <h3>All saved contacts</h3>
+                <p>Support cards and coordinator rows are managed together here for easier updates, filtering, and exports.</p>
+              </div>
+            </div>
+            <div class="contacts-toolbar">
+              <div class="filter-row">
+                <div class="field">
+                  <label for="contactTypeFilter">Filter by contact type</label>
+                  <select id="contactTypeFilter">
+                    <option value="">All contact types</option>
+                    <option value="support">Support</option>
+                    <option value="coordinator">Coordinator</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="contactClubFilter">Filter by club name</label>
+                  <select id="contactClubFilter">
+                    <option value="">All clubs / associations</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="contactSearch">Search</label>
+                  <input id="contactSearch" type="search" placeholder="Search title, class or coordinator">
+                </div>
+                <button class="btn" type="button" id="downloadContactsDoc">Generate DOC</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Title / Club</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Timing</th>
+                    <th>Address</th>
+                    <th>Faculty Coordinator</th>
+                    <th>Faculty Email</th>
+                    <th>Faculty Phone</th>
+                    <th>Student Coordinator</th>
+                    <th>Student Coordinator Class</th>
+                    <th>Student Email</th>
+                    <th>Student Phone</th>
+                    <th>Order</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="contactTable"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

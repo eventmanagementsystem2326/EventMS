@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Manage Competitions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .competitions-layout {
+      display: grid;
+      gap: 22px;
+      padding-top: 18px;
+    }
+
+    .competitions-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+    }
+
+    .competitions-intro p {
+      margin: 8px 0 0;
+      max-width: 760px;
+    }
+
+    .competitions-grid {
+      display: grid;
+      grid-template-columns: minmax(360px, 440px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .competitions-form-card,
+    .competitions-table-card {
+      height: 100%;
+    }
+
+    .competitions-form-card {
+      position: sticky;
+      top: 106px;
+    }
+
+    .competitions-form-card .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .competitions-form-card .field {
+      align-content: start;
+    }
+
+    .competitions-form-card .field input,
+    .competitions-form-card .field select,
+    .competitions-form-card .checkbox-dropdown summary {
+      min-height: 58px;
+    }
+
+    .competitions-form-card .field textarea {
+      min-height: 96px;
+    }
+
+    .competitions-table-card .table-wrap {
+      max-height: 760px;
+      overflow: auto;
+      padding-bottom: 4px;
+    }
+
+    .competitions-table-card table {
+      min-width: 1500px;
+    }
+
+    .competitions-table-card th,
+    .competitions-table-card td {
+      white-space: nowrap;
+    }
+
+    .competitions-table-card td:nth-child(9),
+    .competitions-table-card td:nth-child(10) {
+      white-space: normal;
+      min-width: 180px;
+    }
+
+    .competitions-table-card td:last-child {
+      min-width: 250px;
+    }
+
+    .competitions-table-card td:last-child .button-row {
+      flex-wrap: nowrap;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(228, 93, 40, 0.12);
+      color: var(--brand-deep);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 12px;
+      padding: 12px;
+      border: 1px solid rgba(20, 32, 51, 0.12);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .checkbox-grid label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .checkbox-grid input {
+      width: auto;
+      min-height: 0;
+      height: 16px;
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    .competitions-form-card .field .checkbox-grid input {
+      min-height: 0;
+      height: 16px;
+      padding: 0;
+    }
+
+    .checkbox-dropdown {
+      position: relative;
+    }
+
+    .checkbox-dropdown summary {
+      min-height: 46px;
+      padding: 12px 14px;
+      border: 1px solid rgba(20, 32, 51, 0.12);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .checkbox-dropdown summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .checkbox-dropdown summary::after {
+      content: "v";
+      float: right;
+      color: var(--muted);
+    }
+
+    .checkbox-dropdown[open] summary::after {
+      content: "^";
+    }
+
+    .checkbox-dropdown .checkbox-grid {
+      position: absolute;
+      z-index: 5;
+      left: 0;
+      top: calc(100% + 6px);
+      grid-template-columns: 1fr;
+      width: max(100%, 360px);
+      box-shadow: 0 16px 30px rgba(20, 32, 51, 0.12);
+    }
+
+    .checkbox-dropdown .checkbox-grid label {
+      align-items: flex-start;
+      line-height: 1.25;
+      min-width: 0;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    .checkbox-dropdown .checkbox-grid input {
+      flex: 0 0 auto;
+      margin-top: 3px;
+    }
+
+    .competitions-table-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .competitions-table-title p,
+    .competitions-form-card p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .competitions-table-card {
+      overflow: hidden;
+    }
+
+    .competitions-table-title {
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(20, 32, 51, 0.08);
+    }
+
+    .competitions-form-card,
+    .competitions-table-card {
+      padding: 24px;
+    }
+
+    @media (max-width: 1180px) {
+      .competitions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .competitions-form-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .competitions-intro,
+      .competitions-table-title {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .competitions-form-card .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .checkbox-dropdown .checkbox-grid {
+        width: 100%;
+      }
+
+      .competitions-layout {
+        padding-top: 8px;
+      }
+
+      .competitions-form-card,
+      .competitions-table-card {
+        padding: 20px;
+      }
+
+      .competitions-table-card table {
+        min-width: 1180px;
+      }
+    }
+  </style>
+</head>
+<body data-page="manageCompetitions">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="admin-dashboard.html"><img src="assets/college-logo.png" alt="Trisha logo"><div class="brand-copy"><strong>Trisha EMS</strong><span>Competition management</span></div></a>
+        <nav class="nav-links">
+          <a data-nav href="admin-dashboard.html">Dashboard</a>
+          <a data-nav href="manage-events.html">Events</a>
+          <a data-nav href="manage-competitions.html">Competitions</a>
+          <a data-nav href="manage-homescreen.html">Highlights</a>
+          <a data-nav href="manage-contacts.html">Contacts</a>
+          <a data-nav href="manage-options.html">Options</a>
+          <a data-nav href="activity-report.html">Activities</a>
+          <a data-nav href="participants-report.html">Reports</a>
+          <a data-nav href="summary-report.html">Summary</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container competitions-layout">
+        <div class="competitions-intro">
+          <div>
+            <span class="section-label">Admin Competition Desk</span>
+            <h1 style="margin:0;font-size:2.35rem;">Organize competitions with the same structured workflow.</h1>
+            <p>Create individual and group competitions, map them to events where needed, and keep all rule and coordinator details in one responsive workspace.</p>
+          </div>
+        </div>
+        <div class="competitions-grid">
+          <article class="form-panel competitions-form-card">
+            <span class="section-label">Competition Form</span>
+            <h3>Create or update competition</h3>
+            <p>Keep the required details consistent while still allowing optional event links, schedule card images, custom venue names, and supporting files.</p>
+            <div id="competitionFlash" class="flash"></div>
+            <form id="competitionForm" class="form-grid">
+              <div class="field"><label for="theme">Theme</label><input id="theme" required></div>
+              <div class="field"><label for="competition_type">Competition type</label><select id="competition_type" required><option value="Individual">Individual</option><option value="Group">Group</option></select></div>
+              <div class="field hidden" id="teamLimitWrap"><label for="minTeamLimit">Minimum team limit</label><input id="minTeamLimit" type="number" min="2" max="10" placeholder="Minimum members"></div>
+              <div class="field hidden" id="maxTeamLimitWrap"><label for="maxTeamLimit">Maximum team limit</label><input id="maxTeamLimit" type="number" min="2" max="10" placeholder="Maximum members"></div>
+              <div class="field"><label for="category">Category</label><select id="category"><option value="">Select category</option><option value="Internal">Internal</option><option value="External">External</option></select></div>
+              <div class="field" id="competitionClubField"><label>Club</label><details class="checkbox-dropdown" id="club"><summary id="clubSummary">Select club</summary><div class="checkbox-grid"><label><input type="checkbox" name="club" value="Coding Club"> Coding Club</label><label><input type="checkbox" name="club" value="Cultural Club"> Cultural Club</label><label><input type="checkbox" name="club" value="Sports Club"> Sports Club</label><label><input type="checkbox" name="club" value="Management Club"> Management Club</label><label><input type="checkbox" name="club" value="Other"> Other</label></div></details></div>
+              <div class="field hidden"><label for="otherClub">Other club</label><input id="otherClub" placeholder="Enter custom club name"></div>
+              <div class="field"><label for="eventId">Linked event</label><select id="eventId"></select></div>
+              <div class="field hidden"><label for="otherEventId">Other event name</label><input id="otherEventId" placeholder="Enter other event name"></div>
+              <div class="field"><label>Audience</label><details class="checkbox-dropdown" id="audience"><summary id="audienceSummary">Select audience</summary><div class="checkbox-grid"><label><input type="checkbox" name="audience" value="1st BCA"> 1st BCA</label><label><input type="checkbox" name="audience" value="2nd BCA"> 2nd BCA</label><label><input type="checkbox" name="audience" value="3rd BCA"> 3rd BCA</label><label><input type="checkbox" name="audience" value="BCA"> BCA</label><label><input type="checkbox" name="audience" value="1st BCOM"> 1st BCOM</label><label><input type="checkbox" name="audience" value="2nd BCOM"> 2nd BCOM</label><label><input type="checkbox" name="audience" value="3rd BCOM"> 3rd BCOM</label><label><input type="checkbox" name="audience" value="BCOM"> BCOM</label><label><input type="checkbox" name="audience" value="CA"> CA</label><label><input type="checkbox" name="audience" value="CS"> CS</label><label><input type="checkbox" name="audience" value="All Students"> All Students</label><label><input type="checkbox" name="audience" value="Other"> Other</label></div></details></div>
+              <div class="field hidden"><label for="otherAudience">Other audience</label><input id="otherAudience" placeholder="Enter custom audience"></div>
+              <div class="field"><label for="competitionDateMode">Competition duration</label><select id="competitionDateMode"><option value="single">Single day</option><option value="multiple">Multiple days</option></select></div>
+              <div class="field"><label for="competitionDate" id="competitionStartDateLabel">Date</label><input id="competitionDate" type="date" required></div>
+              <div class="field hidden" id="competitionEndDateField"><label for="competitionEndDate">To date</label><input id="competitionEndDate" type="date"></div>
+              <div class="field"><label for="time">Time</label><input id="time" type="time"></div>
+              <div class="field full"><label for="venue">Venue</label><select id="venue" required><option value="">Select venue</option><option value="SVS Auditorium">SVS Auditorium</option><option value="APJ Abdul Kalam">APJ Abdul Kalam</option><option value="Aryabhata">Aryabhata</option><option value="Bill Gates(Lab)">Bill Gates(Lab)</option><option value="Dr B R Ambedkar">Dr B R Ambedkar</option><option value="Varahamihira">Varahamihira</option><option value="Bhagat Singh">Bhagat Singh</option><option value="Charaka">Charaka</option><option value="Open Ground">Open Ground</option><option value="Other">Other</option></select></div>
+              <div class="field full hidden"><label for="otherVenue">Other venue</label><input id="otherVenue" placeholder="Enter custom venue"></div>
+              <div class="field full"><label for="facultyCoordinator">Faculty coordinator</label><textarea id="facultyCoordinator" placeholder="Faculty coordinator names"></textarea></div>
+              <div class="field full"><label for="studentCoordinator">Student coordinator</label><textarea id="studentCoordinator" placeholder="Student coordinator names (Optional)"></textarea></div>
+              <div class="field full"><label for="competitionImageFile">Schedule card image</label><input id="competitionImageFile" type="file" accept="image/*"></div>
+              <div class="field full"><label for="rulesFile">Upload rules file</label><input id="rulesFile" type="file"></div>
+              <div class="field full"><div class="button-row"><button class="btn" type="submit" id="competitionSubmitLabel">Save competition</button><button class="btn-ghost hidden" type="button" id="cancelCompetitionEdit">Cancel edit</button></div></div>
+            </form>
+          </article>
+          <article class="table-panel competitions-table-card">
+            <div class="competitions-table-title">
+              <div>
+                <span class="section-label">Published List</span>
+                <h3>Published competitions</h3>
+                <p>The table matches the original admin structure while staying scrollable and clean on smaller screens.</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Theme</th><th>Type</th><th>Category</th><th>Club</th><th>Event</th><th>From Date</th><th>To Date</th><th>Time</th><th>Venue</th><th>Audience</th><th>Faculty Coordinator</th><th>Student Coordinator</th><th>Schedule Card Image</th><th>Rules</th><th>Action</th></tr></thead>
+                <tbody id="competitionTable"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

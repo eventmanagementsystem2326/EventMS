@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Student Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="studentDashboard">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="student-dashboard.html">
+          <img src="assets/college-logo.png" alt="Trisha logo">
+          <div class="brand-copy">
+            <strong>Trisha EMS</strong>
+            <span>Student workspace</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a data-nav href="student-dashboard.html">Dashboard</a>
+          <a data-nav href="events.html">Events</a>
+          <a data-nav href="Contact-Us.html">Contact</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-panel">
+          <span class="eyebrow">Student Portal</span>
+          <h1>Welcome, <span id="welcomeName">Student</span></h1>
+          <p>Track upcoming events, discover competitions, and stay updated with the latest campus schedule in one visual student workspace.</p>
+          <div class="stats-grid" style="margin-top:24px;">
+            <article class="metric-card"><h3>Total Upcoming Events</h3><div class="metric-value" id="studentEventCount">0</div><div class="metric-note">Visible to students</div></article>
+            <article class="metric-card"><h3>Total Upcoming Competitions</h3><div class="metric-value" id="studentCompetitionCount">0</div><div class="metric-note">Ready for registration</div></article>
+          </div>
+        </div>
+        <aside class="info-panel">
+          <div class="slider dashboard-slider" id="heroSlider"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container">
+        <div class="page-heading">
+          <div>
+            <h1 style="font-size:2rem;">Upcoming Schedule</h1>
+            <p>Events and competitions sorted into one visual card view with quick schedule details.</p>
+          </div>
+          <a class="btn" href="events.html">Explore full catalog</a>
+        </div>
+        <div class="card-grid" id="studentUpcoming"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">Trisha Event Management System powered by HTML, CSS, JavaScript and Supabase.</div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Manage Highlights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="manageHighlights">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="admin-dashboard.html"><img src="assets/college-logo.png" alt="Trisha logo"><div class="brand-copy"><strong>Trisha EMS</strong><span>Homescreen highlights</span></div></a>
+        <nav class="nav-links">
+          <a data-nav href="admin-dashboard.html">Dashboard</a>
+          <a data-nav href="manage-events.html">Events</a>
+          <a data-nav href="manage-competitions.html">Competitions</a>
+          <a data-nav href="manage-homescreen.html">Highlights</a>
+          <a data-nav href="manage-contacts.html">Contacts</a>
+          <a data-nav href="manage-options.html">Options</a>
+          <a data-nav href="activity-report.html">Activities</a>
+          <a data-nav href="participants-report.html">Reports</a>
+          <a data-nav href="summary-report.html">Summary</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container split-layout">
+        <article class="form-panel">
+          <h3>Control student dashboard slideshow</h3>
+          <p class="section-copy">Upload or link highlight videos here. These slides appear on the student dashboard. The login screen stays fixed with `trisha-college.jpg`.</p>
+          <div id="highlightFlash" class="flash"></div>
+          <form id="highlightForm" class="form-grid">
+            <div class="field">
+              <label for="highlightMediaTitle">Slide title</label>
+              <input id="highlightMediaTitle" type="text" placeholder="Campus Tour Video">
+            </div>
+            <div class="field">
+              <label for="highlightDisplayOrder">Display order</label>
+              <input id="highlightDisplayOrder" type="number" min="0" value="0">
+            </div>
+            <div class="field full">
+              <label for="highlightMediaFile">Or upload video</label>
+              <input id="highlightMediaFile" type="file" accept="video/mp4,video/webm,video/ogg,video/quicktime,video/x-m4v">
+            </div>
+            <div class="field full">
+              <label>Preview</label>
+              <div id="highlightMediaPreview" class="highlight-media-preview">
+                <div class="empty-state">Choose a video URL or upload a file to preview it here.</div>
+              </div>
+            </div>
+            <div class="field full">
+              <div class="button-row">
+                <button class="btn" type="submit" id="highlightSubmitLabel">Save video</button>
+                <button class="btn-ghost hidden" type="button" id="cancelHighlightEdit">Cancel edit</button>
+              </div>
+            </div>
+          </form>
+        </article>
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Current dashboard slides</h3>
+              <p class="section-copy">Add, update, reorder, or delete the videos shown in the student dashboard slideshow.</p>
+            </div>
+          </div>
+          <div class="card-grid" id="highlightList"></div>
+        </article>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Accounts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .accounts-layout {
+      display: grid;
+      grid-template-columns: minmax(420px, 520px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .accounts-layout .form-panel {
+      position: sticky;
+      top: 106px;
+    }
+
+    .account-form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 20px;
+      align-items: start;
+    }
+
+    .account-form-grid .field {
+      align-self: start;
+      min-width: 0;
+    }
+
+    .account-form-grid .field input,
+    .account-form-grid .field select {
+      height: 52px;
+      min-height: 52px;
+    }
+
+    #accountClubField .section-copy {
+      margin-top: 6px;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .account-form-grid .field.full label.checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .account-form-grid .field.full label.checkbox-label input {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+    }
+
+    .account-table-wrap table {
+      min-width: 980px;
+    }
+
+    @media (max-width: 1080px) {
+      .accounts-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .accounts-layout .form-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .account-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body data-page="manageUsers">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="admin-dashboard.html"><img src="assets/college-logo.png" alt="Trisha logo"><div class="brand-copy"><strong>Trisha EMS</strong><span>Accounts and club access</span></div></a>
+        <nav class="nav-links">
+          <a data-nav href="admin-dashboard.html">Dashboard</a>
+          <a data-nav href="manage-events.html">Events</a>
+          <a data-nav href="manage-competitions.html">Competitions</a>
+          <a data-nav href="manage-homescreen.html">Highlights</a>
+          <a data-nav href="manage-contacts.html">Contacts</a>
+          <a data-nav href="manage-options.html">Options</a>
+          <a data-nav href="activity-report.html">Activities</a>
+          <a data-nav href="participants-report.html">Reports</a>
+          <a data-nav href="summary-report.html">Summary</a>
+          <a data-nav href="manage-users.html">Accounts</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container stack">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">Admin Access Desk</span>
+            <h1 style="font-size:2.2rem;">Manage login credentials for all roles.</h1>
+            <p>Use coordinator accounts with the existing clubs and associations already configured in the system.</p>
+          </div>
+        </div>
+
+        <div class="accounts-layout">
+          <article class="form-panel">
+            <h3>Login Account</h3>
+            <p class="section-copy">Create admin, student, and coordinator credentials. Coordinators must be linked to one club or association.</p>
+            <div id="accountFlash" class="flash"></div>
+            <form id="accountForm" class="form-grid account-form-grid">
+              <div class="field full">
+                <label for="accountName">Display name</label>
+                <input id="accountName" type="text" placeholder="Enter display name">
+              </div>
+              <div class="field">
+                <label for="accountRole">Role</label>
+                <select id="accountRole">
+                  <option value="">Select role</option>
+                  <option value="admin">Admin</option>
+                  <option value="coordinator">Coordinator</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
+              <div class="field hidden" id="accountClubField">
+                <label for="accountClub">Club / Association</label>
+                <input id="accountClub" type="text" placeholder="Enter club / association">
+                <p class="section-copy">Coordinator clubs created here will be used in event and competition club selection.</p>
+              </div>
+              <div class="field">
+                <label for="accountUsername">Username</label>
+                <input id="accountUsername" type="text" placeholder="Enter username">
+              </div>
+              <div class="field">
+                <label for="accountPassword">Password</label>
+                <input id="accountPassword" type="text" placeholder="Enter password">
+              </div>
+              <div class="field full">
+                <label class="checkbox-label"><input id="accountActive" type="checkbox" checked> Active account</label>
+              </div>
+              <div class="field full">
+                <div class="button-row">
+                  <button class="btn" type="submit" id="accountSubmitLabel">Save account</button>
+                  <button class="btn-ghost hidden" type="button" id="cancelAccountEdit">Cancel edit</button>
+                </div>
+              </div>
+            </form>
+          </article>
+          <article class="table-panel">
+            <div class="page-heading" style="margin-bottom:14px;">
+              <div>
+                <h3>Login Accounts</h3>
+                <p>Manage admin, coordinator, and student credentials. Coordinator rows show the linked club or association.</p>
+              </div>
+              <div class="toolbar">
+                <select id="accountFilterRole">
+                  <option value="">All roles</option>
+                  <option value="admin">Admin</option>
+                  <option value="coordinator">Coordinator</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap account-table-wrap">
+              <table>
+                <thead><tr><th>S.No</th><th>Role</th><th>Club</th><th>Name</th><th>Username</th><th>Password</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="accountTable"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

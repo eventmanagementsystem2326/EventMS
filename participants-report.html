@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Reports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="reportGenerator">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="admin-dashboard.html"><img src="assets/college-logo.png" alt="Trisha logo"><div class="brand-copy"><strong>Trisha EMS</strong><span>Report generator</span></div></a>
+        <nav class="nav-links">
+          <a data-nav href="admin-dashboard.html">Dashboard</a>
+          <a data-nav href="manage-events.html">Events</a>
+          <a data-nav href="manage-competitions.html">Competitions</a>
+          <a data-nav href="manage-homescreen.html">Highlights</a>
+          <a data-nav href="manage-contacts.html">Contacts</a>
+          <a data-nav href="manage-options.html">Options</a>
+          <a data-nav href="activity-report.html">Activities</a>
+          <a data-nav href="participants-report.html">Reports</a>
+          <a data-nav href="summary-report.html">Summary</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container">
+        <article class="table-panel" id="participantsSection">
+          <div class="page-heading">
+            <div>
+              <h1 style="font-size:1.8rem;">Participant List Report</h1>
+              <p>Generate and export participant lists with useful filters.</p>
+            </div>
+            <button class="btn download-report" data-target="participantsSection" type="button">Generate DOC</button>
+          </div>
+          <div class="toolbar" style="margin-bottom:16px;">
+            <select id="participantClubFilter">
+              <option value="">All clubs</option>
+            </select>
+            <select id="competitionDropdown"></select>
+            <input id="participantSearch" type="search" placeholder="Search by student, register no or department">
+            <select id="participantDepartmentFilter">
+              <option value="">All departments</option>
+              <option value="BCA">BCA</option>
+              <option value="BCOM">BCOM</option>
+              <option value="BBA">BBA</option>
+              <option value="MCOM">MCOM</option>
+            </select>
+            <select id="participantSemesterFilter">
+              <option value="">All years / semesters</option>
+              <option value="First Year">First Year</option>
+              <option value="Second Year">Second Year</option>
+              <option value="Third Year">Third Year</option>
+              <option value="Fourth Semester">Fourth Semester</option>
+              <option value="Sixth Semester">Sixth Semester</option>
+            </select>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>Participants</th><th>Registration Number</th><th>Department</th><th>Year</th><th>Email</th><th>Contact</th></tr></thead><tbody id="participantReport"></tbody></table></div>
+        </article>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

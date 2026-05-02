@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="login">
+  <main class="auth-shell">
+    <section class="auth-card">
+      <div class="auth-visual">
+        <div>
+          <img src="assets/college-logo.png" alt="Trisha logo" style="width:180px;">
+          <span class="eyebrow">Event Management System</span>
+          <h1>Professional Campus Events, Competitions and Registrations in One Place.</h1>
+          <p>Use the student workspace to explore events and register. Use the admin workspace to manage programmes, reports and highlights through Supabase.</p>
+        </div>
+      </div>
+      <div class="auth-form">
+        <div class="page-heading" style="margin-bottom:10px;">
+          <div>
+            <h1 style="font-size:2.4rem;">Welcome back</h1>
+            <p>Choose Student, Coordinator, or Admin to enter the EMS workspace.</p>
+          </div>
+        </div>
+        <div id="loginFlash" class="flash"></div>
+        <form id="loginForm" class="stack">
+          <div class="form-grid">
+            <div class="field">
+              <label for="role">Role</label>
+              <select id="role" required>
+                <option value="">Select your role</option>
+                <option value="admin">Admin</option>
+                <option value="coordinator">Coordinator</option>
+                <option value="student">Student</option>
+              </select>
+            </div>
+            <div class="field hidden" id="clubSelectField">
+              <label for="clubSelect">Club</label>
+              <select id="clubSelect">
+                <option value="">Select club</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="username">Username</label>
+              <input id="username" type="text" placeholder="Enter your name or username" required>
+            </div>
+            <div class="field full">
+              <label for="password">Password</label>
+              <div class="password-field">
+                <input id="password" type="password" placeholder="Enter password" required>
+                <button id="togglePassword" class="password-toggle" type="button" aria-label="Show password" aria-pressed="false">
+                  <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m2 2 20 20"></path>
+                    <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"></path>
+                    <path d="M9.9 4.2A10.8 10.8 0 0 1 12 4c5 0 9 4.8 10 8a12.7 12.7 0 0 1-2.9 4.4"></path>
+                    <path d="M6.6 6.6A12.3 12.3 0 0 0 2 12c1 3.2 5 8 10 8 1.6 0 3.1-.5 4.4-1.3"></path>
+                  </svg>
+                  <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="button-row">
+            <button class="btn" type="submit">Enter dashboard</button>
+          </div>
+          <p class="muted">This frontend uses role-based access for the project workflow. You can replace it with Supabase Auth later if needed.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

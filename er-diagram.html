@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMS Professional ER Diagram</title>
+  <style>
+    @page {
+      size: A3 landscape;
+      margin: 0.35in;
+    }
+
+    :root {
+      --ink: #17314f;
+      --muted: #5b708a;
+      --line: #274d78;
+      --soft-line: #afc6df;
+      --panel: #ffffff;
+      --tint: #eef5fc;
+      --tint-2: #f7fbff;
+      --accent: #d9e8f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--ink);
+      background: #f3f7fc;
+    }
+
+    .sheet {
+      padding: 22px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 900px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .legend {
+      min-width: 310px;
+      padding: 14px 16px;
+      background: var(--panel);
+      border: 1.5px solid #cddced;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(19, 49, 79, 0.07);
+    }
+
+    .legend h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .legend-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .board {
+      background: var(--panel);
+      border: 1.5px solid #cbd8e7;
+      border-radius: 16px;
+      box-shadow: 0 12px 28px rgba(19, 49, 79, 0.08);
+      overflow: hidden;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background:
+        linear-gradient(var(--tint-2), var(--tint-2)),
+        linear-gradient(90deg, rgba(39, 77, 120, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(39, 77, 120, 0.04) 1px, transparent 1px);
+      background-size: auto, 36px 36px, 36px 36px;
+    }
+
+    .entity-box {
+      fill: #ffffff;
+      stroke: var(--line);
+      stroke-width: 2.2;
+      rx: 12;
+      ry: 12;
+    }
+
+    .entity-head {
+      fill: var(--accent);
+      stroke: var(--line);
+      stroke-width: 2.2;
+    }
+
+    .entity-sep {
+      stroke: var(--soft-line);
+      stroke-width: 1.2;
+    }
+
+    .entity-title {
+      font-size: 18px;
+      font-weight: 700;
+      text-anchor: middle;
+      fill: var(--ink);
+    }
+
+    .attr {
+      font-size: 12.5px;
+      fill: var(--ink);
+    }
+
+    .attr.pk {
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .attr.fk {
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    .relationship {
+      fill: #edf5fe;
+      stroke: var(--line);
+      stroke-width: 2.1;
+    }
+
+    .relation-text {
+      font-size: 14px;
+      font-weight: 700;
+      text-anchor: middle;
+      fill: var(--ink);
+    }
+
+    .link {
+      stroke: var(--line);
+      stroke-width: 2.1;
+      fill: none;
+    }
+
+    .link.logical {
+      stroke-dasharray: 8 6;
+    }
+
+    .card {
+      font-size: 12px;
+      font-weight: 700;
+      fill: var(--ink);
+    }
+
+    .note {
+      font-size: 12px;
+      fill: var(--muted);
+    }
+
+    .footer-note {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border: 1px solid #d7e4f2;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="hero">
+      <div>
+        <h1>Event Management System ER Diagram</h1>
+        <p>
+          Professional presentation version of the database schema derived from
+          <strong>supabase-schema.sql</strong> and <strong>app-settings-schema.sql</strong>.
+          Primary keys are underlined. Foreign keys are italicized. Relationship diamonds show
+          the business links between entities, while the dashed relationship indicates an
+          application-level connection that is not enforced as a database foreign key.
+        </p>
+      </div>
+      <div class="legend">
+        <h2>Notation</h2>
+        <div class="legend-row">
+          <svg width="42" height="22" viewBox="0 0 42 22" aria-hidden="true">
+            <rect x="3" y="3" width="36" height="16" rx="4" fill="#fff" stroke="#274d78" stroke-width="1.8"></rect>
+          </svg>
+          <span>Entity</span>
+        </div>
+        <div class="legend-row">
+          <svg width="42" height="22" viewBox="0 0 42 22" aria-hidden="true">
+            <polygon points="21,2 39,11 21,20 3,11" fill="#edf5fe" stroke="#274d78" stroke-width="1.8"></polygon>
+          </svg>
+          <span>Relationship</span>
+        </div>
+        <div class="legend-row">
+          <svg width="42" height="22" viewBox="0 0 42 22" aria-hidden="true">
+            <ellipse cx="21" cy="11" rx="18" ry="8" fill="#fff" stroke="#274d78" stroke-width="1.8"></ellipse>
+          </svg>
+          <span>Attribute symbol reference</span>
+        </div>
+        <div class="legend-row">
+          <span><u><strong>underlined</strong></u></span>
+          <span>Primary Key</span>
+        </div>
+        <div class="legend-row">
+          <span><em><strong>italic</strong></em></span>
+          <span>Foreign Key</span>
+        </div>
+        <div class="legend-row">
+          <svg width="42" height="12" viewBox="0 0 42 12" aria-hidden="true">
+            <line x1="2" y1="6" x2="40" y2="6" stroke="#274d78" stroke-width="1.8" stroke-dasharray="6 4"></line>
+          </svg>
+          <span>Logical link only</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="board">
+      <svg viewBox="0 0 1600 980" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+        <title id="title">EMS Professional ER Diagram</title>
+        <desc id="desc">Clear entity relationship diagram for the EMS project with readable entity boxes and relationship diamonds.</desc>
+
+        <!-- EVENTS -->
+        <rect class="entity-box" x="80" y="80" width="310" height="260" rx="12" ry="12"></rect>
+        <rect class="entity-head" x="80" y="80" width="310" height="54" rx="12" ry="12"></rect>
+        <rect x="80" y="122" width="310" height="14" fill="#d9e8f8"></rect>
+        <text class="entity-title" x="235" y="114">EVENTS</text>
+        <line class="entity-sep" x1="102" y1="160" x2="368" y2="160"></line>
+        <line class="entity-sep" x1="102" y1="188" x2="368" y2="188"></line>
+        <line class="entity-sep" x1="102" y1="216" x2="368" y2="216"></line>
+        <line class="entity-sep" x1="102" y1="244" x2="368" y2="244"></line>
+        <line class="entity-sep" x1="102" y1="272" x2="368" y2="272"></line>
+        <line class="entity-sep" x1="102" y1="300" x2="368" y2="300"></line>
+        <text class="attr pk" x="104" y="152">id</text>
+        <text class="attr" x="104" y="180">theme</text>
+        <text class="attr" x="104" y="208">category</text>
+        <text class="attr" x="104" y="236">club</text>
+        <text class="attr" x="104" y="264">date</text>
+        <text class="attr" x="104" y="292">endDate</text>
+        <text class="attr" x="104" y="320">time, venue, resourcePerson</text>
+        <text class="attr" x="104" y="348">audience, description, brochureLink, bannerImage, created_at</text>
+
+        <!-- COMPETITIONS -->
+        <rect class="entity-box" x="650" y="80" width="330" height="300" rx="12" ry="12"></rect>
+        <rect class="entity-head" x="650" y="80" width="330" height="54" rx="12" ry="12"></rect>
+        <rect x="650" y="122" width="330" height="14" fill="#d9e8f8"></rect>
+        <text class="entity-title" x="815" y="114">COMPETITIONS</text>
+        <line class="entity-sep" x1="672" y1="160" x2="958" y2="160"></line>
+        <line class="entity-sep" x1="672" y1="188" x2="958" y2="188"></line>
+        <line class="entity-sep" x1="672" y1="216" x2="958" y2="216"></line>
+        <line class="entity-sep" x1="672" y1="244" x2="958" y2="244"></line>
+        <line class="entity-sep" x1="672" y1="272" x2="958" y2="272"></line>
+        <line class="entity-sep" x1="672" y1="300" x2="958" y2="300"></line>
+        <line class="entity-sep" x1="672" y1="328" x2="958" y2="328"></line>
+        <text class="attr pk" x="674" y="152">id</text>
+        <text class="attr" x="674" y="180">theme</text>
+        <text class="attr" x="674" y="208">competition_type</text>
+        <text class="attr" x="674" y="236">teamLimit</text>
+        <text class="attr" x="674" y="264">category, club</text>
+        <text class="attr" x="674" y="292">eventId</text>
+        <text class="attr" x="674" y="320">competitionDate, competitionEndDate</text>
+        <text class="attr" x="674" y="348">time, venue, facultyCoordinator, studentCoordinator</text>
+        <text class="attr" x="674" y="376">description, prize, rulesLink, created_at</text>
+
+        <!-- REGISTRATIONS -->
+        <rect class="entity-box" x="635" y="560" width="360" height="250" rx="12" ry="12"></rect>
+        <rect class="entity-head" x="635" y="560" width="360" height="54" rx="12" ry="12"></rect>
+        <rect x="635" y="602" width="360" height="14" fill="#d9e8f8"></rect>
+        <text class="entity-title" x="815" y="594">REGISTRATIONS</text>
+        <line class="entity-sep" x1="657" y1="640" x2="973" y2="640"></line>
+        <line class="entity-sep" x1="657" y1="668" x2="973" y2="668"></line>
+        <line class="entity-sep" x1="657" y1="696" x2="973" y2="696"></line>
+        <line class="entity-sep" x1="657" y1="724" x2="973" y2="724"></line>
+        <line class="entity-sep" x1="657" y1="752" x2="973" y2="752"></line>
+        <line class="entity-sep" x1="657" y1="780" x2="973" y2="780"></line>
+        <text class="attr pk" x="659" y="632">id</text>
+        <text class="attr fk" x="659" y="660">competition_id</text>
+        <text class="attr" x="659" y="688">student_name</text>
+        <text class="attr" x="659" y="716">register_number</text>
+        <text class="attr" x="659" y="744">department, semester</text>
+        <text class="attr" x="659" y="772">email, contact_number</text>
+        <text class="attr" x="659" y="800">team_members, status, created_at</text>
+
+        <!-- HIGHLIGHTS -->
+        <rect class="entity-box" x="80" y="560" width="310" height="220" rx="12" ry="12"></rect>
+        <rect class="entity-head" x="80" y="560" width="310" height="54" rx="12" ry="12"></rect>
+        <rect x="80" y="602" width="310" height="14" fill="#d9e8f8"></rect>
+        <text class="entity-title" x="235" y="594">HIGHLIGHTS</text>
+        <line class="entity-sep" x1="102" y1="640" x2="368" y2="640"></line>
+        <line class="entity-sep" x1="102" y1="668" x2="368" y2="668"></line>
+        <line class="entity-sep" x1="102" y1="696" x2="368" y2="696"></line>
+        <line class="entity-sep" x1="102" y1="724" x2="368" y2="724"></line>
+        <text class="attr pk" x="104" y="632">id</text>
+        <text class="attr" x="104" y="660">title, subtitle</text>
+        <text class="attr" x="104" y="688">image_url</text>
+        <text class="attr" x="104" y="716">cta_link</text>
+        <text class="attr" x="104" y="744">display_order, category, created_at</text>
+
+        <!-- CONTACTS -->
+        <rect class="entity-box" x="1170" y="520" width="350" height="310" rx="12" ry="12"></rect>
+        <rect class="entity-head" x="1170" y="520" width="350" height="54" rx="12" ry="12"></rect>
+        <rect x="1170" y="562" width="350" height="14" fill="#d9e8f8"></rect>
+        <text class="entity-title" x="1345" y="554">CONTACTS</text>
+        <line class="entity-sep" x1="1192" y1="600" x2="1498" y2="600"></line>
+        <line class="entity-sep" x1="1192" y1="628" x2="1498" y2="628"></line>
+        <line class="entity-sep" x1="1192" y1="656" x2="1498" y2="656"></line>
+        <line class="entity-sep" x1="1192" y1="684" x2="1498" y2="684"></line>
+        <line class="entity-sep" x1="1192" y1="712" x2="1498" y2="712"></line>
+        <line class="entity-sep" x1="1192" y1="740" x2="1498" y2="740"></line>
+        <line class="entity-sep" x1="1192" y1="768" x2="1498" y2="768"></line>
+        <text class="attr pk" x="1194" y="592">id</text>
+        <text class="attr" x="1194" y="620">contact_type</text>
+        <text class="attr" x="1194" y="648">title, email, phone</text>
+        <text class="attr" x="1194" y="676">timing, detail</text>
+        <text class="attr" x="1194" y="704">club_name</text>
+        <text class="attr" x="1194" y="732">faculty_coordinator</text>
+        <text class="attr" x="1194" y="760">student_coordinator</text>
+        <text class="attr" x="1194" y="788">student_coordinator_class, display_order, created_at</text>
+
+        <!-- APP SETTINGS -->
+        <rect class="entity-box" x="1120" y="120" width="340" height="170" rx="12" ry="12"></rect>
+        <rect class="entity-head" x="1120" y="120" width="340" height="54" rx="12" ry="12"></rect>
+        <rect x="1120" y="162" width="340" height="14" fill="#d9e8f8"></rect>
+        <text class="entity-title" x="1290" y="154">APP_SETTINGS</text>
+        <line class="entity-sep" x1="1142" y1="200" x2="1438" y2="200"></line>
+        <line class="entity-sep" x1="1142" y1="228" x2="1438" y2="228"></line>
+        <text class="attr pk" x="1144" y="192">setting_key</text>
+        <text class="attr" x="1144" y="220">setting_values</text>
+        <text class="attr" x="1144" y="248">updated_at</text>
+
+        <!-- Relationship: Events hosts Competitions -->
+        <line class="link logical" x1="390" y1="210" x2="540" y2="210"></line>
+        <line class="link logical" x1="620" y1="210" x2="650" y2="210"></line>
+        <polygon class="relationship" points="580,180 620,210 580,240 540,210"></polygon>
+        <text class="relation-text" x="580" y="215">HOSTS</text>
+        <text class="card" x="420" y="198">1</text>
+        <text class="card" x="630" y="198">N</text>
+        <text class="note" x="432" y="256">Logical relationship through `eventId` text field</text>
+
+        <!-- Relationship: Competitions has Registrations -->
+        <line class="link" x1="815" y1="380" x2="815" y2="438"></line>
+        <line class="link" x1="815" y1="502" x2="815" y2="560"></line>
+        <polygon class="relationship" points="815,438 860,470 815,502 770,470"></polygon>
+        <text class="relation-text" x="815" y="475">HAS</text>
+        <text class="card" x="829" y="425">1</text>
+        <text class="card" x="829" y="544">N</text>
+
+        <!-- Support lines to show standalone nature lightly -->
+        <line class="link" x1="995" y1="685" x2="1110" y2="685"></line>
+        <text class="note" x="1018" y="670">Support / coordinator data</text>
+
+        <line class="link" x1="390" y1="670" x2="525" y2="670"></line>
+        <text class="note" x="422" y="654">Homepage media records</text>
+
+        <line class="link" x1="980" y1="205" x2="1120" y2="205"></line>
+        <text class="note" x="1004" y="189">Dropdown and option lists</text>
+      </svg>
+    </div>
+
+    <div class="footer-note">
+      <strong>Relationship summary:</strong> The database has one enforced foreign-key relationship:
+      <strong>COMPETITIONS.id -> REGISTRATIONS.competition_id</strong>. The
+      <strong>EVENTS -> COMPETITIONS</strong> link is shown because the application stores an event reference in
+      <strong>competitions.eventId</strong>, but it is not declared as a database foreign key in the current schema.
+    </div>
+  </div>
+</body>
+</html>

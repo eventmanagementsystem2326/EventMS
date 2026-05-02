@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="adminDashboard">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="admin-dashboard.html">
+          <img src="assets/college-logo.png" alt="Trisha logo">
+          <div class="brand-copy"><strong>Trisha EMS</strong><span>Admin workspace</span></div>
+        </a>
+        <nav class="nav-links">
+          <a data-nav href="admin-dashboard.html">Dashboard</a>
+          <a data-nav href="manage-events.html">Events</a>
+          <a data-nav href="manage-competitions.html">Competitions</a>
+          <a data-nav href="manage-homescreen.html">Highlights</a>
+          <a data-nav href="manage-contacts.html">Contacts</a>
+          <a data-nav href="manage-options.html">Options</a>
+          <a data-nav href="activity-report.html">Activities</a>
+          <a data-nav href="participants-report.html">Reports</a>
+          <a data-nav href="summary-report.html">Summary</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container stack">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">Overview</span>
+            <h1 style="font-size:2.5rem;">Admin dashboard</h1>
+            <p>Track platform activity, recently published items and participation volume from one clear control panel.</p>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <article class="metric-card"><h3>Total Events</h3><div class="metric-value" id="totalEvents">0</div><div class="metric-note">Created till now</div></article>
+          <article class="metric-card"><h3>Total Competitions</h3><div class="metric-value" id="totalCompetitions">0</div><div class="metric-note">Created till now</div></article>
+          <article class="metric-card"><h3>Total Upcoming Events</h3><div class="metric-value" id="totalUpcomingEvents">0</div><div class="metric-note">Not completed yet</div></article>
+          <article class="metric-card"><h3>Total Upcoming Competitions</h3><div class="metric-value" id="totalUpcomingCompetitions">0</div><div class="metric-note">Not completed yet</div></article>
+        </div>
+        <div class="split-layout">
+          <article class="table-panel">
+            <div class="page-heading" style="margin-bottom:14px;">
+              <div>
+                <h3>Recent Events</h3>
+                <p>Only upcoming events are shown here.</p>
+              </div>
+              <div class="toolbar">
+                <input id="eventDateFilter" type="date" aria-label="Filter events by date">
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Theme</th><th>Date</th><th>Venue</th><th>Club</th></tr></thead>
+                <tbody id="dashboardEvents"></tbody>
+              </table>
+            </div>
+          </article>
+          <article class="table-panel">
+            <div class="page-heading" style="margin-bottom:14px;">
+              <div>
+                <h3>Recent Competitions</h3>
+                <p>Only upcoming competitions are shown here.</p>
+              </div>
+              <div class="toolbar">
+                <input id="competitionDateFilter" type="date" aria-label="Filter competitions by date">
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Theme</th><th>Type</th><th>Date</th><th>Venue</th><th>Club</th></tr></thead>
+                <tbody id="dashboardCompetitions"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Manage Options</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .options-layout {
+      display: grid;
+      gap: 22px;
+      padding-top: 42px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .options-grid .form-panel {
+      position: sticky;
+      top: 126px;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    @media (max-width: 1080px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .options-grid .form-panel {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body data-page="manageOptions">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="admin-dashboard.html"><img src="assets/college-logo.png" alt="Trisha logo"><div class="brand-copy"><strong>Trisha EMS</strong><span>Form settings</span></div></a>
+        <nav class="nav-links">
+          <a data-nav href="admin-dashboard.html">Dashboard</a>
+          <a data-nav href="manage-events.html">Events</a>
+          <a data-nav href="manage-competitions.html">Competitions</a>
+          <a data-nav href="manage-homescreen.html">Highlights</a>
+          <a data-nav href="manage-contacts.html">Contacts</a>
+          <a data-nav href="manage-options.html">Options</a>
+          <a data-nav href="activity-report.html">Activities</a>
+          <a data-nav href="participants-report.html">Reports</a>
+          <a data-nav href="summary-report.html">Summary</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container options-layout">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">Admin Options Desk</span>
+            <h1 style="font-size:2.3rem;">Manage shared dropdown and checkbox values.</h1>
+            <p>Update audiences, venues, categories, duration choices, competition types, and class labels from one place so staff do not need code edits.</p>
+          </div>
+        </div>
+        <div class="options-grid">
+          <article class="form-panel">
+            <h3>Add or update option</h3>
+            <p class="section-copy">Each saved item becomes available in the related event, competition, contact, and filter forms.</p>
+            <div id="optionFlash" class="flash"></div>
+            <form id="optionForm" class="form-grid">
+              <div class="field full">
+                <label for="optionGroup">Option group</label>
+                <select id="optionGroup"></select>
+                <p id="optionGroupHelper" class="section-copy"></p>
+              </div>
+              <div class="field full">
+                <label for="optionLabel">Label</label>
+                <input id="optionLabel" type="text" placeholder="What users should see">
+              </div>
+              <div class="field full">
+                <label for="optionValue">Value</label>
+                <input id="optionValue" type="text" placeholder="Stored value">
+              </div>
+              <div class="field full">
+                <label for="optionOrder">Display order</label>
+                <input id="optionOrder" type="number" min="1" placeholder="1">
+              </div>
+              <div class="field full">
+                <div class="button-row">
+                  <button class="btn" type="submit" id="optionSubmitLabel">Save option</button>
+                  <button class="btn-ghost hidden" type="button" id="cancelOptionEdit">Cancel edit</button>
+                </div>
+              </div>
+            </form>
+          </article>
+          <section id="optionGroupList" class="options-list"></section>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

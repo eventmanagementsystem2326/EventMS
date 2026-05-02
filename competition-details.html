@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Competition Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="competitionDetails">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="student-dashboard.html">
+          <img src="assets/college-logo.png" alt="Trisha logo">
+          <div class="brand-copy"><strong>Trisha EMS</strong><span>Competition detail view</span></div>
+        </a>
+        <nav class="nav-links">
+          <a data-nav href="student-dashboard.html">Dashboard</a>
+          <a data-nav href="events.html">Events</a>
+          <a data-nav href="Contact-Us.html">Contact</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container stack">
+        <div id="detailFlash" class="flash"></div>
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">Competition</span>
+            <h1 id="detailTitle" style="font-size:2.6rem;">Loading competition...</h1>
+            <p id="detailSummary">Please wait while the competition details are loaded.</p>
+          </div>
+          <div class="button-row">
+            <a class="btn" id="registerBtn" href="registration.html">Register now</a>
+            <a class="btn-ghost" href="events.html">Back to catalog</a>
+          </div>
+        </div>
+        <div class="detail-grid">
+          <article class="panel">
+            <div class="mini-grid" id="detailMeta"></div>
+            <div style="margin-top:20px;" id="detailExtra"></div>
+          </article>
+          <article class="panel detail-media" id="detailMedia"></article>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

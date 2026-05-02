@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trisha EMS | Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="registration">
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="student-dashboard.html">
+          <img src="assets/college-logo.png" alt="Trisha logo">
+          <div class="brand-copy"><strong>Trisha EMS</strong><span>Competition registration</span></div>
+        </a>
+        <nav class="nav-links">
+          <a data-nav href="student-dashboard.html">Dashboard</a>
+          <a data-nav href="events.html">Events</a>
+          <a data-nav href="Contact-Us.html">Contact</a>
+          <a href="#" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <section class="page-section">
+      <div class="container split-layout">
+        <article class="panel">
+          <span class="eyebrow">Register</span>
+          <h1 style="font-size:2.2rem;">Join the competition</h1>
+          <p>Fill in the participant details carefully. Duplicate register numbers are blocked for the same competition.</p>
+          <div id="registrationCompetition" style="margin-top:18px;"></div>
+          <div id="registrationRuleNote" class="muted" style="margin-top:14px;"></div>
+        </article>
+        <article class="form-panel">
+          <div id="registrationFlash" class="flash"></div>
+          <form id="registrationForm" class="form-grid">
+            <div class="field"><label for="name">Student name</label><input id="name" required></div>
+            <div class="field"><label for="regno">Register number</label><input id="regno" required></div>
+            <div class="field"><label for="dept">Department</label><select id="dept" required><option value="">Select department</option><option>BCA</option><option>BCOM</option><option>BBA</option><option>MCOM</option></select></div>
+            <div class="field"><label for="sem">Year / Semester</label><select id="sem" required><option value="">Select year</option><option>First Year</option><option>Second Year</option><option>Third Year</option><option>Fourth Semester</option><option>Sixth Semester</option></select></div>
+            <div class="field"><label for="email">Email</label><input id="email" type="email" required></div>
+            <div class="field"><label for="contact">Contact number</label><input id="contact" type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="9876543210" required></div>
+            <div class="field full hidden" id="groupNameField"><label for="groupName">Group name <span class="muted"></span></label><input id="groupName" type="text" placeholder="Enter group name"></div>
+            <div id="groupFields" class="form-grid" style="grid-column:1/-1;"></div>
+            <div class="field full">
+              <div class="button-row">
+                <button class="btn" type="submit">Submit registration</button>
+                <a class="btn-ghost" href="events.html">Cancel</a>
+              </div>
+            </div>
+          </form>
+        </article>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
